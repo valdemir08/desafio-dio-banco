@@ -1,0 +1,23 @@
+package one.digitalinnovation.view;
+
+import java.awt.BorderLayout;
+import java.awt.Font;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class CadastroContainer extends JPanel{
+
+	private JPanel tituloPanel;
+	private JLabel tituloLabel;
+	private CadastroPanel cadastroPanel;
+	
+	public CadastroContainer() {
+		setLayout(new BorderLayout());
+		
+		tituloLabel = new JLabel("Cadastro de cliente");
+		tituloLabel.setFont(new Font(Font.MONOSPACED, Font.BOLD, 24));
+		
+		add(tituloLabel, BorderLayout.NORTH);
+	}
+}

@@ -1,0 +1,33 @@
+package one.digitalinnovation.main;
+
+import one.digitalinnovation.model.Cliente;
+import one.digitalinnovation.model.Conta;
+import one.digitalinnovation.model.ContaCorrente;
+import one.digitalinnovation.model.ContaPoupanca;
+import one.digitalinnovation.view.BancoView;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Cliente cliente = new Cliente("Fulano Henriques", "11111111111");
+		
+		ContaCorrente cc = new ContaCorrente(cliente);
+		cc.depositar(100);
+		
+		ContaPoupanca poupanca = new ContaPoupanca(cliente);
+		
+		ContaCorrente cc3 = new ContaCorrente(cliente);
+		
+		cc.transferir(100, cc);
+		cc.imprimirExtrato();
+		poupanca.imprimirExtrato();
+		
+		cc3.imprimirExtrato();
+		
+		new BancoView();
+		
+
+	}
+
+}

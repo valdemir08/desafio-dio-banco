@@ -1,0 +1,69 @@
+package one.digitalinnovation.controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import one.digitalinnovation.model.Cliente;
+import one.digitalinnovation.model.Constantes;
+import one.digitalinnovation.model.Conta;
+import one.digitalinnovation.model.ContaCorrente;
+import one.digitalinnovation.model.ContaExisteException;
+import one.digitalinnovation.model.ContaPoupanca;
+import one.digitalinnovation.model.DataBase;
+import one.digitalinnovation.model.Endereco;
+import one.digitalinnovation.view.CadastroContainer;
+import one.digitalinnovation.view.CadastroPanel;
+import one.digitalinnovation.view.Message;
+
+public class Controller {
+	
+	public class CadastroController implements ActionListener{
+		private CadastroPanel cadastroPanel;
+		private CadastroContainer cadastroContainer;
+		
+		public CadastroController(){
+			this.cadastroContainer = new CadastroContainer();
+			this.cadastroPanel = cadastroContainer.getCadastroPanel();
+			
+			
+			control();
+		}
+		
+		public void control() {
+			cadastroContainer.getConfirmarButton().addActionListener(this);
+			cadastroContainer.getCancelarButton().addActionListener(this);
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource() == cadastroContainer.getConfirmarButton()) {
+				
+				Endereco endereco = new Endereco(cadastroPanel.getEstadoComboBox().getSelectedItem().toString(),
+						cadastroPanel.getCidadeField().getText(), cadastroPanel.getCepField().getText(),
+						cadastroPanel.getBairroField().getText(), cadastroPanel.getLogradouroField().getText());
+			
+				Cliente cliente = new Cliente(cadastroPanel.getNomeField().getText(),
+						cadastroPanel.getDocumentoField().getText(), endereco);
+				
+				try {
+					DataBase.addConta(new ContaCorrente(cliente));
+					DataBase.addConta(new ContaPoupanca(cliente));
+				} catch (NullPointerException | ContaExisteException e1) {
+					e1.printStackTrace();
+					Message.showMessage(e1.getMessage());
+				}
+				
+				Message.showMessage(Constantes.MENSAGEM_SUCESSO);
+				
+				
+			}
+			if(e.getSource() == cadastroContainer.getCancelarButton()) {
+				cadastroContainer.setVisible(false);
+				cadastroContainer = new CadastroContainer();
+				
+			}
+			
+		}
+	}
+
+}

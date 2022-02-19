@@ -1,0 +1,7 @@
+package one.digitalinnovation.view;
+
+import javax.swing.JFrame;
+
+public class BancoView extends JFrame{
+
+}

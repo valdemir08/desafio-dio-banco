@@ -1,0 +1,32 @@
+package one.digitalinnovation.view;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SpringLayout;
+
+import one.digitalinnovation.model.SpringUtilities;
+
+public class RemoverPanel extends JPanel{
+	
+	private JLabel agenciaLabel, contaLabel;
+	private JTextField agenciaField, contaField;
+	
+	public RemoverPanel() {
+		setLayout(new SpringLayout());
+		
+		agenciaLabel = new JLabel("Agencia");
+		agenciaField = new JTextField(10);
+		
+		contaLabel = new JLabel("Conta");
+		contaField = new JTextField(10);
+		
+		add(agenciaLabel);
+		add(agenciaField);
+		add(contaLabel);
+		add(contaField);
+		
+		SpringUtilities.makeCompactGrid(this, 2, 2, 20, 10, 30, 20);
+	}
+
+}

@@ -1,0 +1,14 @@
+package one.digitalinnovation.model;
+
+import java.util.ArrayList;
+
+public class Cliente extends Pessoa{
+	
+	private int idade;
+	private ArrayList<Endereco> enderecos;
+	
+	public Cliente(String nome, String documento) {
+		super(nome, documento);
+	}
+
+}

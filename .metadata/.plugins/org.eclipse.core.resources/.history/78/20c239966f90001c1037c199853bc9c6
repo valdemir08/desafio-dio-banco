@@ -1,0 +1,174 @@
+package one.digitalinnovation.controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import one.digitalinnovation.model.Cliente;
+import one.digitalinnovation.model.Constantes;
+import one.digitalinnovation.model.Conta;
+import one.digitalinnovation.model.ContaCorrente;
+import one.digitalinnovation.model.ContaExisteException;
+import one.digitalinnovation.model.ContaPoupanca;
+import one.digitalinnovation.model.DataBase;
+import one.digitalinnovation.model.Endereco;
+import one.digitalinnovation.view.BancoView;
+import one.digitalinnovation.view.CadastroContainer;
+import one.digitalinnovation.view.CadastroPanel;
+import one.digitalinnovation.view.Message;
+import one.digitalinnovation.view.RemoverContainer;
+import one.digitalinnovation.view.RemoverPanel;
+
+public class Controller {
+	private CadastroController cadastroController;
+	private BancoController bancoController;
+	private RemoverController removerController;
+
+	public Controller() {
+		cadastroController = new CadastroController();
+		removerController = new RemoverController();
+		bancoController = new BancoController();
+		
+
+
+	}
+	
+	private void hidePanels() {
+		removerController.getRemoverContainer().setVisible(false);
+		cadastroController.getCadastroContainer().setVisible(false);
+	}
+	
+	private class BancoController implements ActionListener{
+		private BancoView bancoView;
+
+		public BancoController() {
+			this.bancoView = new BancoView(cadastroController.getCadastroContainer(), removerController.getRemoverContainer());
+			control();
+
+		}
+		
+		public void control() {
+			bancoView.getCadastrarMenuItem().addActionListener(this);
+			bancoView.getRemoverMenuItem().addActionListener(this);
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource() == bancoView.getCadastrarMenuItem()) {
+				hidePanels();
+				//bancoView.switchContainer(cadastroController.getCadastroContainer());
+				//bancoView.addCadastroContainer();
+				cadastroController.getCadastroContainer().setVisible(true);
+			}
+			if(e.getSource() == bancoView.getRemoverMenuItem()) {
+				hidePanels();
+				//bancoView.switchContainer(removerController.getRemoverContainer());
+				bancoView.addRemoverContainer();
+				removerController.getRemoverContainer().setVisible(true);
+			}
+			bancoView.repaint();
+			
+		}
+
+	}
+	
+	private class RemoverController implements ActionListener{
+		private RemoverPanel removerPanel;
+		private RemoverContainer removerContainer;
+		
+		public RemoverController() {
+			this.removerContainer = new RemoverContainer();
+			this.removerPanel = removerContainer.getRemoverPanel();
+			control();
+		}
+
+		public void control() {
+			removerContainer.getConfirmarButton().addActionListener(this);
+			removerContainer.getCancelarButton().addActionListener(this);
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		public RemoverPanel getRemoverPanel() {
+			return removerPanel;
+		}
+
+		public void setRemoverPanel(RemoverPanel removerPanel) {
+			this.removerPanel = removerPanel;
+		}
+
+		public RemoverContainer getRemoverContainer() {
+			return removerContainer;
+		}
+
+		public void setRemoverContainer(RemoverContainer removerContainer) {
+			this.removerContainer = removerContainer;
+		}	
+	}
+
+	
+
+	private class CadastroController implements ActionListener{
+		private CadastroPanel cadastroPanel;
+		private CadastroContainer cadastroContainer;
+
+		public CadastroController(){
+			this.cadastroContainer = new CadastroContainer();
+			this.cadastroPanel = cadastroContainer.getCadastroPanel();
+			control();
+		}
+
+		public void control() {
+			cadastroContainer.getConfirmarButton().addActionListener(this);
+			cadastroContainer.getCancelarButton().addActionListener(this);
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource() == cadastroContainer.getConfirmarButton()) {
+
+				Endereco endereco = new Endereco(cadastroPanel.getEstadoComboBox().getSelectedItem().toString(),
+						cadastroPanel.getCidadeField().getText(), cadastroPanel.getCepField().getText(),
+						cadastroPanel.getBairroField().getText(), cadastroPanel.getLogradouroField().getText());
+
+				Cliente cliente = new Cliente(cadastroPanel.getNomeField().getText(),
+						cadastroPanel.getDocumentoField().getText(), endereco);
+
+				try {
+					DataBase.addConta(new ContaCorrente(cliente));
+					DataBase.addConta(new ContaPoupanca(cliente));
+				} catch (NullPointerException | ContaExisteException e1) {
+					e1.printStackTrace();
+					Message.showMessage(e1.getMessage());
+				}
+
+				Message.showMessage(Constantes.MENSAGEM_SUCESSO);
+
+
+			}
+			if(e.getSource() == cadastroContainer.getCancelarButton()) {
+				cadastroContainer.setVisible(false);
+			}
+
+
+		}
+		public CadastroPanel getCadastroPanel() {
+			return cadastroPanel;
+		}
+
+		public void setCadastroPanel(CadastroPanel cadastroPanel) {
+			this.cadastroPanel = cadastroPanel;
+		}
+
+		public CadastroContainer getCadastroContainer() {
+			return cadastroContainer;
+		}
+
+		public void setCadastroContainer(CadastroContainer cadastroContainer) {
+			this.cadastroContainer = cadastroContainer;
+		}
+	}
+
+}

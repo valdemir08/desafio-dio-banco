@@ -1,0 +1,11 @@
+package one.digitalinnovation.view;
+
+import javax.swing.JOptionPane;
+
+public class Mensagem extends JOptionPane{
+	
+	public static void exibirMensagem(String mensagem) {
+		showMessageDialog(null, mensagem);
+	}
+
+}

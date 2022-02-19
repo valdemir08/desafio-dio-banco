@@ -1,0 +1,84 @@
+package one.digitalinnovation.view;
+
+import java.text.ParseException;
+
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SpringLayout;
+import javax.swing.text.MaskFormatter;
+
+import one.digitalinnovation.model.SpringUtilities;
+
+public class CadastroPanel extends JPanel {
+
+	private JLabel nomeLabel, documentoLabel, estadoLabel, cidadeLabel, cepLabel,
+	bairroLabel, logradouroLabel, numeroLabel;
+
+	private JTextField nomeField, documentoField, cidadeField, bairroField, logradouroField, numeroField;
+	private JFormattedTextField cepField;
+	private JComboBox estadoComboBox;
+	
+	private String[] estados = {"AC", "AL", "AP", "AM", "BA", "CE", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO", "DF" };
+
+
+	public CadastroPanel() {
+		setLayout(new SpringLayout());
+		
+		nomeLabel = new JLabel("Nome");
+		documentoLabel = new JLabel("CPF ou CNPJ");
+		estadoLabel = new JLabel("Estado");
+		cidadeLabel = new JLabel("Cidade");
+		cepLabel = new JLabel("Cep");
+		bairroLabel = new JLabel("Bairro");
+		logradouroLabel = new JLabel("Logradouro");
+		numeroLabel = new JLabel("Número");
+		
+		nomeField = new JTextField();
+		documentoField = new JTextField();
+		cidadeField = new JTextField();
+		bairroField = new JTextField();
+		logradouroField = new JTextField();
+		numeroField = new JTextField();
+		
+		try {
+			cepField = new JFormattedTextField(new MaskFormatter("#####-###"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		estadoComboBox = new JComboBox(estados);
+		
+		add(nomeLabel);
+		add(nomeField);
+		
+		add(documentoLabel);
+		add(documentoField);
+		
+		add(estadoLabel);
+		add(estadoComboBox);
+		
+		add(cidadeLabel);
+		add(cidadeField);
+		
+		add(cepLabel);
+		add(cepField);
+		
+		add(bairroLabel);
+		add(bairroField);
+		
+		add(logradouroLabel);
+		add(logradouroField);
+		
+		add(numeroLabel);
+		add(numeroField);
+		
+		SpringUtilities.makeCompactGrid(this, 8, 2, 40, 10, 50, 8);
+
+
+
+	}
+
+}

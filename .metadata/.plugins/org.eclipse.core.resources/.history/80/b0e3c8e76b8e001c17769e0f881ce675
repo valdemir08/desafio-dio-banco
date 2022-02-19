@@ -1,0 +1,36 @@
+package one.digitalinnovation.model;
+
+import java.util.ArrayList;
+
+public class BaseDados {
+	private static ArrayList<Conta> contas;
+	
+	public void dataBaseInit() {
+		contas = new ArrayList<Conta>();
+	}
+	
+	public Conta searchConta(Conta conta) {
+		for(Conta contaCurrent:contas) {
+			if(conta.getAgencia() == contaCurrent.getAgencia() &&
+					conta.getNumero() == contaCurrent.getNumero()) {
+				return contaCurrent;
+			}
+		}
+		return null;
+	}
+	
+	public boolean isConta(Conta conta) {
+		return contas.contains(searchConta(conta));
+	}
+	
+	public boolean addConta(Conta conta) {
+		if(conta != null) {
+			if(!isConta(conta))//para nao adicionar contas que ja estejam no array
+				return contas.add(conta);
+		}
+		return false;
+	}
+	
+	
+
+}

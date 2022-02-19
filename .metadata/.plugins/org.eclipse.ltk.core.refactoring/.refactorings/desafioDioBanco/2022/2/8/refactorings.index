@@ -1,0 +1,14 @@
+1644888685617	Extract method 'imprimirInfoComuns'
+1644935464316	Rename type 'BaseDados'
+1644939278191	Copy compilation unit
+1644963531057	Rename type 'Mensagem'
+1644963906160	Copy compilation unit
+1644964188205	Rename method 'exibirMensagem'
+1644966347343	Rename compilation unit 'CadastroClientePanel.java'
+1644966489851	Encapsulate field 'senha'
+1644966495565	Encapsulate field 'idade'
+1645201894891	Copy compilation units
+1645202189203	Rename field 'agenciaLabel'
+1645202206805	Rename field 'contaLabel'
+1645202226786	Rename field 'agenciaField'
+1645202240691	Rename field 'contaField'

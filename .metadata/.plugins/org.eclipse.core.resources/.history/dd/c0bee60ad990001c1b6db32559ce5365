@@ -1,0 +1,66 @@
+package one.digitalinnovation.view;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SpringLayout;
+
+import one.digitalinnovation.model.SpringUtilities;
+
+public class TransferenciaPanel extends JPanel{
+	
+	private JLabel agenciaOrigemLabel, contaOrigemLabel;
+	private JTextField agenciaOrigemField, contaField;
+	
+	public TransferenciaPanel() {
+		setLayout(new SpringLayout());
+		
+		agenciaOrigemLabel = new JLabel("Agencia");
+		agenciaOrigemField = new JTextField(10);
+		
+		contaOrigemLabel = new JLabel("Conta");
+		contaField = new JTextField(10);
+		
+		add(agenciaOrigemLabel);
+		add(agenciaOrigemField);
+		add(contaOrigemLabel);
+		add(contaField);
+		
+		SpringUtilities.makeCompactGrid(this, 2, 2, 30, 20, 50, 20);
+	}
+
+	public JLabel getAgenciaLabel() {
+		return agenciaOrigemLabel;
+	}
+
+	public void setAgenciaLabel(JLabel agenciaLabel) {
+		this.agenciaOrigemLabel = agenciaLabel;
+	}
+
+	public JLabel getContaLabel() {
+		return contaOrigemLabel;
+	}
+
+	public void setContaLabel(JLabel contaLabel) {
+		this.contaOrigemLabel = contaLabel;
+	}
+
+	public JTextField getAgenciaField() {
+		return agenciaOrigemField;
+	}
+
+	public void setAgenciaField(JTextField agenciaField) {
+		this.agenciaOrigemField = agenciaField;
+	}
+
+	public JTextField getContaField() {
+		return contaField;
+	}
+
+	public void setContaField(JTextField contaField) {
+		this.contaField = contaField;
+	}
+
+	
+	
+}

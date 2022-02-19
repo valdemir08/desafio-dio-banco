@@ -1,0 +1,53 @@
+package one.digitalinnovation.view;
+
+import java.awt.BorderLayout;
+import java.awt.Font;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+public class CadastroContainer extends JPanel{
+
+	private JPanel tituloPanel;
+	private JLabel tituloLabel;
+	private CadastroPanel cadastroPanel;
+	
+	public CadastroContainer() {
+		setLayout(new BorderLayout());
+		this.cadastroPanel = new CadastroPanel();
+		
+		tituloLabel = new JLabel("Cadastro de cliente", SwingConstants.CENTER);
+		tituloLabel.setFont(new Font(Font.MONOSPACED, Font.BOLD, 18));
+		
+		add(tituloLabel, BorderLayout.NORTH);
+		add(cadastroPanel, BorderLayout.CENTER);
+		
+		
+		
+	}
+
+	public JPanel getTituloPanel() {
+		return tituloPanel;
+	}
+
+	public void setTituloPanel(JPanel tituloPanel) {
+		this.tituloPanel = tituloPanel;
+	}
+
+	public JLabel getTituloLabel() {
+		return tituloLabel;
+	}
+
+	public void setTituloLabel(JLabel tituloLabel) {
+		this.tituloLabel = tituloLabel;
+	}
+
+	public CadastroPanel getCadastroPanel() {
+		return cadastroPanel;
+	}
+
+	public void setCadastroPanel(CadastroPanel cadastroPanel) {
+		this.cadastroPanel = cadastroPanel;
+	}
+}

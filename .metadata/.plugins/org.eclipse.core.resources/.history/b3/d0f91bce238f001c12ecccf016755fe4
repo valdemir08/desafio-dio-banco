@@ -1,0 +1,49 @@
+package one.digitalinnovation.main;
+
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+
+import one.digitalinnovation.model.Cliente;
+import one.digitalinnovation.model.Conta;
+import one.digitalinnovation.model.ContaCorrente;
+import one.digitalinnovation.model.ContaPoupanca;
+import one.digitalinnovation.view.BancoView;
+import one.digitalinnovation.view.CadastroContainer;
+import one.digitalinnovation.view.CadastroPanel;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
+		} catch (Exception e) {
+		    // If Nimbus is not available, you can set the GUI to another look and feel.
+		}
+		
+		Cliente cliente = new Cliente("Fulano Henriques", "11111111111");
+		
+		ContaCorrente cc = new ContaCorrente(cliente);
+		cc.depositar(100);
+		
+		ContaPoupanca poupanca = new ContaPoupanca(cliente);
+		
+		ContaCorrente cc3 = new ContaCorrente(cliente);
+		
+		cc.transferir(100, cc);
+		cc.imprimirExtrato();
+		poupanca.imprimirExtrato();
+		
+		cc3.imprimirExtrato();
+		
+		new BancoView(new CadastroContainer());
+		
+
+	}
+
+}

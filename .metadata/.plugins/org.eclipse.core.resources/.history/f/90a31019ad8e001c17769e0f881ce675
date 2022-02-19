@@ -1,0 +1,13 @@
+package one.digitalinnovation.model;
+
+import java.util.ArrayList;
+
+public class Cliente {
+	
+	private int idade;
+	private ArrayList<Endereco> enderecos;
+	
+	
+	
+
+}

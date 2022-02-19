@@ -1,0 +1,19 @@
+package one.digitalinnovation.view;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SpringLayout;
+
+public class CadastroPanel extends JPanel {
+	
+	private JLabel nomeLabel, documentoLabel;
+	private JTextField nomeField, documentoField;
+	
+	public CadastroPanel() {
+		setLayout(new SpringLayout());
+		
+		
+	}
+
+}

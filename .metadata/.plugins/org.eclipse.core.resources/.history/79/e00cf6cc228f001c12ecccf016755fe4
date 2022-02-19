@@ -1,0 +1,61 @@
+package one.digitalinnovation.view;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
+
+public class CadastroContainer extends JPanel{
+
+	private JPanel tituloPanel;
+	private JLabel tituloLabel;
+	private CadastroPanel cadastroPanel;
+	private JScrollPane cadastroPanelScroll;
+	
+	public CadastroContainer() {
+		setLayout(new BorderLayout());
+		this.cadastroPanel = new CadastroPanel();
+		
+		tituloLabel = new JLabel("Cadastro de cliente", SwingConstants.CENTER);
+		tituloLabel.setFont(new Font(Font.MONOSPACED, Font.BOLD, 18));
+		
+		cadastroPanelScroll = new JScrollPane(cadastroPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		cadastroPanelScroll.setPreferredSize(new Dimension(200, 200));
+		
+		add(tituloLabel, BorderLayout.NORTH);
+		add(cadastroPanelScroll, BorderLayout.CENTER);
+		add(new JLabel("sdafsdfsdaf"), BorderLayout.SOUTH);
+		
+		
+		
+	}
+
+	public JPanel getTituloPanel() {
+		return tituloPanel;
+	}
+
+	public void setTituloPanel(JPanel tituloPanel) {
+		this.tituloPanel = tituloPanel;
+	}
+
+	public JLabel getTituloLabel() {
+		return tituloLabel;
+	}
+
+	public void setTituloLabel(JLabel tituloLabel) {
+		this.tituloLabel = tituloLabel;
+	}
+
+	public CadastroPanel getCadastroPanel() {
+		return cadastroPanel;
+	}
+
+	public void setCadastroPanel(CadastroPanel cadastroPanel) {
+		this.cadastroPanel = cadastroPanel;
+	}
+}

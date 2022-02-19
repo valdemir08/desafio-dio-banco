@@ -1,0 +1,22 @@
+package one.digitalinnovation.view;
+
+import java.awt.BorderLayout;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SpringLayout;
+
+public class BackgroundView extends JPanel{
+	private JLabel imgLabel;
+	
+	public BackgroundView() {
+		setLayout(new BorderLayout());
+		imgLabel = new JLabel(new ImageIcon("/desafioDioBanco/img/piggy-bank.png"));
+		add(imgLabel, BorderLayout.CENTER);
+		setVisible(true);
+		
+		
+	}
+
+}

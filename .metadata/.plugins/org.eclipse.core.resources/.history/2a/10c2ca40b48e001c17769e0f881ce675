@@ -1,0 +1,26 @@
+package one.digitalinnovation.model;
+
+import java.util.ArrayList;
+
+import one.digitalinnovation.view.Message;
+
+public class Cliente extends Pessoa{
+	
+	private int idade;
+	private ArrayList<Endereco> enderecos;
+	
+	public Cliente(String nome, String documento) {
+		super(nome, documento);
+		enderecos = new ArrayList<Endereco>();
+	}
+	
+	public boolean addEndereco(Endereco endereco) throws EnderecoNullException {
+		if (endereco != null) {
+			enderecos.add(endereco);
+			Message.showMessage(Constantes.MENSAGEM_SUCESSO);
+			return true;
+		}
+		throw new EnderecoNullException("Nao foi possivel adicionar. Endereco nulo.");
+	}
+
+}
